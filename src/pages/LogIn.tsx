@@ -60,11 +60,11 @@ export default function LogIn({ setUser }: Props) {
                 <input type="password" name='password' placeholder='Password' id='pass' required onChange={(e) => {
                     setPasswordVal(e.target.value)
                 }} />
-                <button className={disabledButton ? 'login-btn-disabled' : 'login-btn'} type='submit'>Log In</button>
+                <button className={disabledButton ? 'login-btn-disabled' : 'login-btn'} type='submit'>Log in</button>
             </form>
             <div className='signup-call-container'>
                 <span>Don't have an account?</span>
-                <Link to="">Sign up</Link>
+                <Link to="/signup">Sign up</Link>
             </div>
             <div className='get-app-container'>
                 <span>Get the app.</span>

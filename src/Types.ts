@@ -18,3 +18,12 @@ export type LogInForm = HTMLFormElement & {
 }
 
 
+export type SignUpForm = HTMLFormElement & {
+    username: HTMLInputElement,
+    email: HTMLInputElement,
+    fName: HTMLInputElement,
+    lName: HTMLInputElement,
+    password: HTMLInputElement,
+    confirmPass: HTMLInputElement,
+    reset: () => void
+}

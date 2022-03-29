@@ -1,0 +1,41 @@
+.signup-container{
+    background-color: #fafafa;
+    display: grid;
+    place-items: center;
+    padding:20px 10px;
+    gap:10px;
+}
+.signup-form{
+    border: solid 1px rgba(0, 0,0, 0.2);
+    display: grid;
+    padding:40px;
+    gap:10px;
+    width: 350px;
+    background-color: white;
+}
+.signup-form span{
+    font-size:15px;
+    color:#8e8e8e;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+.signup-form h1{
+    font-family: 'Lobster Two', cursive;
+    font-size: 45px;
+    color:#343A40;
+}
+.signup-form input{
+    height:35px;
+    padding: 5px;
+    border-radius: 5px;
+    border: solid 1px rgba(0, 0,0, 0.2);
+    background-color: #fafafa;
+    outline: none;
+}
+.signup-btn{
+    background-color: #0095f6;
+    padding: 8px 0;
+    border: none;
+    border-radius: 5px;
+    color:white;
+}

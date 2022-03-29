@@ -1,0 +1,29 @@
+.footer-container{
+    display: grid;
+    gap:20px;
+    padding:50px 30px;
+    
+}
+
+.footer-container ul{
+    display: grid;
+    grid-template-columns: repeat(12,auto);
+    gap:10px;
+}
+.footer-container ul li{
+    font-size: 12px;
+    color:#8e8e8e;
+    cursor: pointer;
+}
+.footer-container ul li:hover{
+    text-decoration: underline;
+    color:#272727;
+}
+.additional-footer-info{
+    display: grid;
+    grid-template-columns: repeat(2,auto);
+    place-content: center;
+    gap:10px;
+    font-size: 14px;
+    color:#8e8e8e;
+}

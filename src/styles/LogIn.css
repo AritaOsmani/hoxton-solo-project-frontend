@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Lobster+Two&display=swap');
+
+.login-container{
+background-color: #fafafa;
+display: grid;
+place-items: center;
+padding:20px 10px;
+gap:10px;
+height: 100vh;
+}
+.login-form{
+    border: solid 1px rgba(0, 0,0, 0.2);
+    display: grid;
+    padding:40px;
+    gap:10px;
+    width: 350px;
+    background-color: white;
+
+}
+.login-form h1{
+    margin-bottom: 40px;
+    font-family: 'Lobster Two', cursive;
+    font-size: 45px;
+    color:#343A40;
+}
+.login-form input{
+    height:35px;
+    padding: 5px;
+    border-radius: 5px;
+    border: solid 1px rgba(0, 0,0, 0.2);
+    background-color: #fafafa;
+    outline: none;
+}
+.login-form input:focus{
+    background-color: #e8f0fe;
+}
+.login-btn{
+    background-color: #0095f6;
+    padding: 8px 0;
+    border: none;
+    border-radius: 5px;
+    color:white;
+}
+.signup-call-container{
+    border: solid 1px rgba(0, 0,0, 0.2);
+    background-color: white;
+    padding:20px;
+    width: 350px;
+    display: grid;
+    grid-template-columns: auto auto;
+    place-content: center;
+    gap:5px;
+}
+.get-app-container{
+    display: grid;
+    gap:15px;
+    margin-top: 10px;
+}
+.app-buttons{
+    display: grid;
+    grid-template-columns: repeat(2,auto);
+    place-content: center;
+    gap:10px;
+}
+.app-buttons button{
+    width: 130px;
+    border: none;
+    background-color: unset;
+    cursor: pointer;
+}

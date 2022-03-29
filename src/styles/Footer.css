@@ -24,6 +24,6 @@
     grid-template-columns: repeat(2,auto);
     place-content: center;
     gap:10px;
-    font-size: 14px;
+    font-size: 13px;
     color:#8e8e8e;
 }

@@ -10,3 +10,11 @@ export type User = {
     accountStatus: string,
     verified: boolean
 }
+
+export type LogInForm = HTMLFormElement & {
+    email_username: HTMLInputElement,
+    password: HTMLInputElement,
+    reset: () => void
+}
+
+

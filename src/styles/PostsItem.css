@@ -52,7 +52,6 @@
     /* justify-items: start;
     align-items: center; */
     place-content: start;
-    padding: 5px;
 }
 
 .username-and-caption-username {
@@ -72,9 +71,14 @@
     /* gap: 10px; */
 }
 
-.post-comm-container span {
-    font-size: 14px;
+.all-comments {
+    font-size: 12px;
     color: #AAA492;
+    cursor: pointer;
+}
+
+.all-comments:hover {
+    text-decoration: underline;
 }
 
 .comment-list {

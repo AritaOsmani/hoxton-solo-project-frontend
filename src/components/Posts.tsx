@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import '../styles/Posts.css'
-import { Post } from '../Types'
+import { Comment, Post } from '../Types'
 import PostItem from './PostItem'
 
 export default function Posts() {
     const [posts, setPosts] = useState<Post[]>([])
+
 
     useEffect(() => {
         fetch(`http://localhost:4000/posts`, {
@@ -17,6 +18,7 @@ export default function Posts() {
                     alert(data.error)
                 } else {
                     setPosts(data)
+
                 }
             })
     }, [])

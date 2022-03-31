@@ -10,7 +10,25 @@ export type User = {
     accountStatus: string,
     verified: boolean
 }
-
+export type Comment = {
+    id: number,
+    content: string,
+    createdAt: string,
+    updatedAt: string,
+    userId: number,
+    postId: number,
+    user: User
+}
+export type Like = {
+    id: number,
+    userId: number,
+    postId: number,
+    user: User
+}
+export type Count = {
+    comments: number,
+    likes: number
+}
 export type Post = {
     id: number,
     image: string,
@@ -18,7 +36,10 @@ export type Post = {
     createdAt: string,
     updatedAt: string,
     userId: number,
-    user: User
+    user: User,
+    comments: Comment[],
+    likes: Like,
+    _count: Count
 }
 
 export type LogInForm = HTMLFormElement & {

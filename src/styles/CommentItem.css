@@ -1,0 +1,15 @@
+.comment-item {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    place-content: start;
+    gap: 10px;
+}
+
+.comment-user {
+    color: black;
+    font-weight: 600;
+}
+
+.comment-content {
+    font-size: 13px;
+}

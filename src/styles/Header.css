@@ -1,7 +1,7 @@
 .header-container {
     border: solid 1px rgba(0, 0, 0, 0.2);
     display: grid;
-    grid-template-columns: 600px auto auto;
+    grid-template-columns: 545px auto auto;
     place-items: content;
     padding: 10px 30px;
     position: sticky;

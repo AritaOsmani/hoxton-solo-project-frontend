@@ -3,18 +3,18 @@
     /* gap:5px; */
     width: 400px;
     place-content: start;
-    padding: 10px;
-    /* height: 100vh;
-    position: fixed;
-    right: 100px; */
-    /* top: 0px; */
+    padding: 0 15px;
+    /* height: 100vh;*/
+    /* position: fixed;
+    top: 78px;
+    right: 50px; */
 }
 
 .user-info {
     display: grid;
     grid-template-columns: 60px auto;
     /* border: solid 1px black; */
-    padding: 10px 5px;
+    padding: 5px;
     place-content: start;
     gap: 20px;
 }

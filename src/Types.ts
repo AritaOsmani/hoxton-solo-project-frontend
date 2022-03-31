@@ -11,6 +11,16 @@ export type User = {
     verified: boolean
 }
 
+export type Post = {
+    id: number,
+    image: string,
+    caption: string,
+    createdAt: string,
+    updatedAt: string,
+    userId: number,
+    user: User
+}
+
 export type LogInForm = HTMLFormElement & {
     email_username: HTMLInputElement,
     password: HTMLInputElement,

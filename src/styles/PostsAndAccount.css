@@ -1,8 +1,7 @@
-.posts-account-container{
+.posts-account-container {
     background-color: #fafafa;
     display: grid;
-    grid-template-columns: 1fr 600px;
+    grid-template-columns: 650px auto;
     place-content: center;
-    padding:30px 50px;
-    position: relative;
+    padding: 30px 50px;
 }

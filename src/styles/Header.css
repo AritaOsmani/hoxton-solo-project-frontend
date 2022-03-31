@@ -1,38 +1,49 @@
-.header-container{
-    border:solid 1px rgba(0, 0, 0, 0.2);
+.header-container {
+    border: solid 1px rgba(0, 0, 0, 0.2);
     display: grid;
     grid-template-columns: 600px auto auto;
     place-items: content;
-    padding:10px 30px;
+    padding: 10px 30px;
+    position: sticky;
+    /* left: 0;
+    right: 0; */
+    top: 0;
+    z-index: 10;
+    background-color: white;
 }
-.logo{
+
+.logo {
     font-family: 'Lobster Two', cursive;
     font-size: 25px;
-    color:#2C3333;
+    color: #2C3333;
 }
-.search-input{
+
+.search-input {
     width: 70%;
-    height:35px;
+    height: 35px;
     align-self: center;
-    padding:10px;
+    padding: 10px;
     background-color: #efefef;
     border: none;
     outline: none;
     border-radius: 5px;
 }
-.account-stuff{
+
+.account-stuff {
     display: grid;
-    grid-template-columns: repeat(6,auto);
+    grid-template-columns: repeat(6, auto);
     place-content: center;
     justify-content: start;
-    gap:20px;
+    gap: 20px;
 }
-.account-stuff img{
+
+.account-stuff img {
     width: 24px;
     height: 24px;
     border: solid 1px rgba(0, 0, 0, 0.2);
     border-radius: 50%;
 }
-._8-yf5{
+
+.header-icons {
     cursor: pointer;
 }

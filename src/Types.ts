@@ -58,3 +58,8 @@ export type SignUpForm = HTMLFormElement & {
     confirmPass: HTMLInputElement,
     reset: () => void
 }
+
+export type AddCommentForm = HTMLFormElement & {
+    comment: HTMLInputElement,
+    reset: () => void
+}

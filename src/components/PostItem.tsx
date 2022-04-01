@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import '../styles/PostsItem.css'
-import { AddCommentForm, Comment, Post } from '../Types'
+import { AddCommentForm, Comment, Like, Post } from '../Types'
 import CommentItem from './CommentItem'
 
 type Props = {
@@ -10,6 +10,8 @@ const baseUrl = "http://localhost:4000";
 
 export default function PostItem({ post }: Props) {
     const [postComments, setPostComments] = useState<Comment[]>([])
+    const [liked, setLiked] = useState<Like | null>(null)
+
 
     useEffect(() => {
         fetch(`http://localhost:4000/comments/${post.id}`).then(res => res.json())
@@ -20,7 +22,7 @@ export default function PostItem({ post }: Props) {
                     setPostComments(data)
                 }
             })
-    }, [])
+    }, [liked])
 
 
     function addComment(content: string, postId: number) {
@@ -39,6 +41,24 @@ export default function PostItem({ post }: Props) {
                     const commentsCopy: Comment[] = JSON.parse(JSON.stringify(postComments))
                     commentsCopy.push(data)
                     setPostComments(commentsCopy)
+
+                }
+            })
+    }
+    function likePost(postId: number) {
+        fetch(`http://localhost:4000/like`, {
+            method: 'POST',
+            headers: {
+                Authorization: localStorage.token,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ postId })
+        }).then(res => res.json())
+            .then(data => {
+                if (data.error) {
+                    alert(data.error)
+                } else {
+                    setLiked(data)
                 }
             })
     }
@@ -53,7 +73,11 @@ export default function PostItem({ post }: Props) {
             <img className='post-image' src={`${baseUrl}/${post.image}`} alt="" />
 
             <div className='likes-and-comments'>
-                <svg aria-label="Like" className="_8-yf5 like-icon " color="#8e8e8e" fill="#8e8e8e" height="24" role="img" viewBox="0 0 24 24" width="24"><path d="M16.792 3.904A4.989 4.989 0 0121.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 014.708-5.218 4.21 4.21 0 013.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 013.679-1.938m0-2a6.04 6.04 0 00-4.797 2.127 6.052 6.052 0 00-4.787-2.127A6.985 6.985 0 00.5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 003.518 3.018 2 2 0 002.174 0 45.263 45.263 0 003.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 00-6.708-7.218z"></path></svg>
+                <svg onClick={() => {
+
+                    likePost(post.id)
+                }}
+                    aria-label="Like" className="_8-yf5 like-icon " color="#8e8e8e" fill="#8e8e8e" height="24" role="img" viewBox="0 0 24 24" width="24"><path d="M16.792 3.904A4.989 4.989 0 0121.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 014.708-5.218 4.21 4.21 0 013.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 013.679-1.938m0-2a6.04 6.04 0 00-4.797 2.127 6.052 6.052 0 00-4.787-2.127A6.985 6.985 0 00.5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 003.518 3.018 2 2 0 002.174 0 45.263 45.263 0 003.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 00-6.708-7.218z"></path></svg>
                 <svg aria-label="Comment" className="_8-yf5 comment-icon" color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 24 24" width="24"><path d="M20.656 17.008a9.993 9.993 0 10-3.59 3.615L22 22z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></path></svg>
                 <div className='save-post'>
                     <svg aria-label="Save" className="_8-yf5  " color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 24 24" width="24"><polygon fill="none" points="20 21 12 13.44 4 21 4 3 20 3 20 21" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></polygon></svg>
@@ -69,7 +93,7 @@ export default function PostItem({ post }: Props) {
                 <span className='username-and-caption-caption'>{post.caption}</span>
             </div>
             <div className='post-comm-container'>
-                <span className='all-comments'>{postComments.length > 3 ? `View all ${post._count.comments} comments` : `${post._count.comments} comments`}</span>
+                <span className='all-comments'>{postComments.length > 3 ? `View all ${postComments.length} comments` : `${postComments.length} comments`}</span>
                 <ul className='comment-list'>
                     {postComments.map(comment => <CommentItem comment={comment} key={comment.id} />)}
 

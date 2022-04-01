@@ -70,7 +70,7 @@ export default function PostItem({ post }: Props) {
                 if (data.error) {
                     alert(data.error)
                 } else {
-                    setLiked(data)
+                    // setLiked(data)
                     const likesCopy: Like[] = JSON.parse(JSON.stringify(postLikes))
                     likesCopy.push(data)
                     setPostLikes(likesCopy)
@@ -106,18 +106,18 @@ export default function PostItem({ post }: Props) {
             <img className='post-image' src={`${baseUrl}/${post.image}`} alt="" />
 
             <div className='likes-and-comments'>
-
-                <i onClick={() => {
+                {liked === false && <i onClick={() => {
                     likePost(post.id)
-                }} className="fal fa-heart"></i>
+                }} className="fal fa-heart"></i>}
 
-
-
-                <i onClick={() => {
+                {liked && <i onClick={() => {
                     setLiked(false)
                     dislikePost(post.id)
 
-                }} className="fas fa-heart"></i>
+                }} className="fas fa-heart"></i>}
+
+
+
 
 
                 {/* <svg onClick={() => {

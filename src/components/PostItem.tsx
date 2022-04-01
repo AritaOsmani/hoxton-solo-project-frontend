@@ -10,7 +10,8 @@ const baseUrl = "http://localhost:4000";
 
 export default function PostItem({ post }: Props) {
     const [postComments, setPostComments] = useState<Comment[]>([])
-    const [liked, setLiked] = useState<Like | null>(null)
+    const [liked, setLiked] = useState(false)
+    const [postLikes, setPostLikes] = useState<Like[]>([])
 
 
     useEffect(() => {
@@ -22,7 +23,18 @@ export default function PostItem({ post }: Props) {
                     setPostComments(data)
                 }
             })
-    }, [liked])
+    }, [])
+
+    useEffect(() => {
+        fetch(`http://localhost:4000/likes/${post.id}`).then(res => res.json())
+            .then(data => {
+                if (data.error) {
+                    alert(data.error)
+                } else {
+                    setPostLikes(data)
+                }
+            })
+    }, [])
 
 
     function addComment(content: string, postId: number) {
@@ -59,6 +71,9 @@ export default function PostItem({ post }: Props) {
                     alert(data.error)
                 } else {
                     setLiked(data)
+                    const likesCopy: Like[] = JSON.parse(JSON.stringify(postLikes))
+                    likesCopy.push(data)
+                    setPostLikes(likesCopy)
                 }
             })
     }
@@ -87,7 +102,7 @@ export default function PostItem({ post }: Props) {
                 {/* Filled heart
                 <svg aria-label="Unlike" className="_8-yf5 " color="#ed4956" fill="#ed4956" height="24" role="img" viewBox="0 0 48 48" width="24"><path d="M34.6 3.1c-4.5 0-7.9 1.8-10.6 5.6-2.7-3.7-6.1-5.5-10.6-5.5C6 3.1 0 9.6 0 17.6c0 7.3 5.4 12 10.6 16.5.6.5 1.3 1.1 1.9 1.7l2.3 2c4.4 3.9 6.6 5.9 7.6 6.5.5.3 1.1.5 1.6.5s1.1-.2 1.6-.5c1-.6 2.8-2.2 7.8-6.8l2-1.8c.7-.6 1.3-1.2 2-1.7C42.7 29.6 48 25 48 17.6c0-8-6-14.5-13.4-14.5z"></path></svg> */}
             </div>
-            <span className='likes'>{`${post._count.likes} likes`}</span>
+            <span className='likes'>{`${postLikes.length} likes`}</span>
             <div className='username-and-caption'>
                 <span className='username-and-caption-username'>{post.user.username}</span>
                 <span className='username-and-caption-caption'>{post.caption}</span>

@@ -43,7 +43,7 @@ export default function SideAccountMenu({ user }: Props) {
             </div>
             <ul className='suggested-users'>
                 {/* {suggested.map(s => <SuggestedUser key={s.id} suggestedUser={s} />)} */}
-                {getOnlyFive(suggested).map(s => <SuggestedUser key={s.id} suggestedUser={s} />)}
+                {getOnlyFive(suggested).map(s => <SuggestedUser key={s.id} suggestedUser={s} suggested={suggested} setSuggestedUser={setSuggested} />)}
             </ul>
             <MainPageFooter />
         </div>

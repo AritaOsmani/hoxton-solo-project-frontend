@@ -31,3 +31,14 @@ export function getFollowedBy(arr: User[]) {
     }
     return result
 }
+
+export function followUser(userToFollowUsername: string) {
+    return fetch(`http://localhost:4000/follow`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.token
+        },
+        body: JSON.stringify({ userToFollowUsername })
+    }).then(res => res.json())
+}

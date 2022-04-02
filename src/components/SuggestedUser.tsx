@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { getFollowedBy } from '../helpers'
+import { followUser, getFollowedBy } from '../helpers'
 import '../styles/SuggestedUser.css'
 import { User } from '../Types'
 
 type Props = {
     suggestedUser: User
+    setSuggestedUser: React.Dispatch<React.SetStateAction<User[]>>
+    suggested: User[]
 }
 
-export default function SuggestedUser({ suggestedUser }: Props) {
+export default function SuggestedUser({ suggestedUser, setSuggestedUser, suggested }: Props) {
     const [followedBy, setFollowedBy] = useState<User[]>([])
 
     useEffect(() => {
@@ -35,7 +37,17 @@ export default function SuggestedUser({ suggestedUser }: Props) {
                 <span className='suggested-user-username'>{suggestedUser.username}</span>
                 {getFollowedBy(followedBy) === '' ? null : <span className='followed-by'>{`Followed by ${getFollowedBy(followedBy)}`}</span>}
             </div>
-            <button className='follow-btn'>Follow</button>
+            <button className='follow-btn' onClick={() => {
+                followUser(suggestedUser.username).then(data => {
+                    if (data.error) {
+                        alert(data.error)
+                    } else {
+                        let suggestedCopy: User[] = JSON.parse(JSON.stringify(suggested))
+                        suggestedCopy = suggestedCopy.filter(s => s.id !== suggestedUser.id)
+                        setSuggestedUser(suggestedCopy)
+                    }
+                })
+            }}>Follow</button>
         </div>
     )
 }

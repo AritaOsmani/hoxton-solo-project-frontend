@@ -31,8 +31,17 @@
 .username-button {
     display: grid;
     grid-template-columns: auto 100px;
-    gap: 10px;
-    /* place-content: center; */
+    gap: 20px;
+    place-items: center;
+}
+
+.posts-following-followers-bio {
+    text-align: start;
+    font-size: 13px;
+}
+
+.username-button span {
+    font-size: 25px;
 }
 
 .posts-following-followers {
@@ -76,4 +85,23 @@ hr {
 .posts-saved-posts {
     border-bottom: solid 1px black;
     cursor: pointer;
+}
+
+.edit-profile-btn {
+    padding: 5px 10px;
+    border: solid 1px rgba(0, 0, 0, 0.2);
+    background-color: unset;
+    cursor: pointer;
+}
+
+.fa-check-circle {
+    color: #3c99f1;
+    font-size: 14px;
+}
+
+.ub {
+    display: grid;
+    grid-template-columns: auto auto;
+    place-items: center;
+    gap: 5px;
 }

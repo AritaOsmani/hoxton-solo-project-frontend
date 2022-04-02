@@ -14,6 +14,7 @@ type Props = {
 export default function UserProfilePage({ user }: Props) {
     const params = useParams()
     const [userFound, setUserFound] = useState<UserProfile | null>(null)
+    const [userMatches, setUserMatches] = useState(false)
 
     useEffect(() => {
         fetch(`http://localhost:4000/users/${params.username}`).then(res => res.json())
@@ -26,12 +27,22 @@ export default function UserProfilePage({ user }: Props) {
             })
     }, [params.username])
 
+    useEffect(() => {
+        if (userFound) {
+            if (userFound.id === user?.id) {
+                setUserMatches(true)
+            } else {
+                setUserMatches(false)
+            }
+        }
+    }, [userFound, user])
+
     return (
 
         <div className='user-profile-page'>
             <Header user={user} />
             <div className='user-profile-page-main'>
-                <UserProfileAccountInfo userFound={userFound} />
+                <UserProfileAccountInfo userFound={userFound} userMatches={userMatches} />
                 <hr />
 
                 <div className='posts-saved'>

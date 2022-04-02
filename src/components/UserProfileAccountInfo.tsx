@@ -2,24 +2,27 @@ import React from 'react'
 import { UserProfile } from '../Types'
 
 type Props = {
-    userFound: UserProfile | null
+    userFound: UserProfile | null,
+    userMatches: boolean
 }
 
-export default function UserProfileAccountInfo({ userFound }: Props) {
+export default function UserProfileAccountInfo({ userFound, userMatches }: Props) {
     return (
         <div className='user-profile-page-account-info'>
             <img src={userFound?.image} alt="" />
             <div className='user-profile-container'>
                 <div className='username-button'>
-                    <span>{userFound?.username}</span>
-                    <button>Button</button>
+                    <span className='ub'>{userFound?.username} {userFound?.verified ? <i className="far fa-check-circle"></i> : null}</span>
+
+                    {userMatches ? <button className='edit-profile-btn'>Edit profile</button> : null}
+
                 </div>
                 <div className='posts-following-followers'>
                     <span>{`${userFound?._count.posts} posts`} </span>
                     <span>{`${userFound?._count.followedBy} followers`} </span>
                     <span>{`${userFound?._count.following} following`}</span>
                 </div>
-                <span>{userFound?.bio}</span>
+                <span className='posts-following-followers-bio'>{userFound?.bio}</span>
             </div>
         </div>
     )

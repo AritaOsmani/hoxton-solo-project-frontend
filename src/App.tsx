@@ -6,6 +6,7 @@ import { Route, Routes } from 'react-router-dom'
 import LogIn from './pages/LogIn'
 import SignUp from './pages/SignUp'
 import Main from './pages/Main'
+import UserProfilePage from './pages/UserProfilePage'
 
 function App() {
   const [user, setUser] = useState<User | null>(null)
@@ -34,6 +35,7 @@ function App() {
           return null;
         }} /> */}
         <Route path='/signup' element={<SignUp setUser={setUser} />} />
+        <Route path='//:username' element={<UserProfilePage user={user} />} />
 
       </Routes>
 

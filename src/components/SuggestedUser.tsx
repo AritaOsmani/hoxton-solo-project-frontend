@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { followUser, getFollowedBy } from '../helpers'
 import '../styles/SuggestedUser.css'
 import { User } from '../Types'
@@ -11,6 +12,7 @@ type Props = {
 
 export default function SuggestedUser({ suggestedUser, setSuggestedUser, suggested }: Props) {
     const [followedBy, setFollowedBy] = useState<User[]>([])
+    const navigate = useNavigate()
 
     useEffect(() => {
         fetch(`http://localhost:4000/followedBy`, {
@@ -31,7 +33,9 @@ export default function SuggestedUser({ suggestedUser, setSuggestedUser, suggest
     }, [])
 
     return (
-        <div className='suggested-user-container'>
+        <div className='suggested-user-container' onClick={() => {
+            navigate(`/${suggestedUser.username}`)
+        }}>
             <img src={suggestedUser.image} alt="" />
             <div className='username-followedby'>
                 <span className='suggested-user-username'>{suggestedUser.username}</span>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { getOnlyFive } from '../helpers'
 import '../styles/SideAccountMenu.css'
 import { User } from '../Types'
@@ -11,6 +12,7 @@ type Props = {
 
 export default function SideAccountMenu({ user }: Props) {
     const [suggested, setSuggested] = useState<User[]>([])
+    const navigate = useNavigate()
 
     useEffect(() => {
         fetch(`http://localhost:4000/suggestions`, {
@@ -29,7 +31,9 @@ export default function SideAccountMenu({ user }: Props) {
 
     return (
         <div className='side-account-menu-container'>
-            <div className='user-info'>
+            <div className='user-info' onClick={() => {
+                navigate(`/${user?.username}`)
+            }}>
                 <img src={user?.image} alt="" />
                 <div className='bio-username'>
                     <span className='username'>{user?.username}</span>

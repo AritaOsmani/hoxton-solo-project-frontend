@@ -17,6 +17,7 @@
     padding: 5px;
     place-content: start;
     gap: 20px;
+    cursor: pointer;
 }
 
 .user-info img {

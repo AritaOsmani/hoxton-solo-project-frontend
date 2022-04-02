@@ -63,3 +63,24 @@ export type AddCommentForm = HTMLFormElement & {
     comment: HTMLInputElement,
     reset: () => void
 }
+
+export type UserProfileCount = {
+    following: number,
+    followedBy: number,
+    posts: number
+}
+
+export type UserProfile = User & {
+    followedBy: User[],
+    following: User[],
+    posts: Post[],
+    _count: UserProfileCount
+}
+export type ProfilePost = {
+    id: number,
+    image: string,
+    caption: string,
+    createdAt: string,
+    updatedAt: string,
+    userId: number
+}

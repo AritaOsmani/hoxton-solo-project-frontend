@@ -1,9 +1,15 @@
 import React from 'react'
+import { ProfilePost } from '../Types'
 
-export default function UserProfilePost() {
+type Props = {
+    post: ProfilePost
+}
+
+const baseURL = 'http://localhost:4000'
+export default function UserProfilePost({ post }: Props) {
     return (
         <div className='user-profile-post'>
-            <img className='p-image' src="https://images.pexels.com/photos/11043076/pexels-photo-11043076.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" />
+            <img className='p-image' src={`${baseURL}/${post.image}`} alt="" />
         </div>
     )
 }

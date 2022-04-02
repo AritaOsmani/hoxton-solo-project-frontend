@@ -16,6 +16,8 @@ export default function UserProfilePage({ user, setUser }: Props) {
     const params = useParams()
     const [userFound, setUserFound] = useState<UserProfile | null>(null)
     const [userMatches, setUserMatches] = useState(false)
+    const [userFollows, setUserFollows] = useState(false)
+    const [userFollowers, setUserFollowers] = useState<User[]>([])
 
     useEffect(() => {
         fetch(`http://localhost:4000/users/${params.username}`).then(res => res.json())
@@ -36,6 +38,28 @@ export default function UserProfilePage({ user, setUser }: Props) {
                 setUserMatches(false)
             }
         }
+    }, [userFound, user])
+
+    useEffect(() => {
+        fetch(`http://localhost:4000/getUserFollowers/${params.username}`).then(res => res.json())
+            .then(data => {
+                if (data.error) {
+                    alert(data.error)
+                } else {
+                    setUserFollowers(data)
+                }
+            })
+    }, [params.username])
+
+    useEffect(() => {
+
+        const matches = userFollowers.find(u => u.id === user?.id)
+        if (matches) {
+            setUserFollows(true)
+        } else {
+            setUserFollows(false)
+        }
+
     }, [userFound, user])
 
     return (

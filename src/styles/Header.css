@@ -10,6 +10,7 @@
     top: 0;
     z-index: 10;
     background-color: white;
+
 }
 
 .logo {
@@ -35,6 +36,11 @@
     place-content: center;
     justify-content: start;
     gap: 20px;
+    position: relative;
+}
+
+.account-stuff li {
+    cursor: pointer;
 }
 
 .account-stuff img {
@@ -45,5 +51,28 @@
 }
 
 .header-icons {
+    cursor: pointer;
+}
+
+.header-menu {
+    display: grid;
+    border: solid 1px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    position: absolute;
+    right: 275px;
+    top: 43px;
+    z-index: 10;
+    background-color: white;
+    place-items: start;
+    gap: 5px;
+    width: 100px;
+}
+
+.header-menu span {
+    font-size: 14px;
+}
+
+.header-menu span:hover {
+    color: #2C3333;
     cursor: pointer;
 }

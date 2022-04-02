@@ -8,10 +8,11 @@ import '../styles/UserProfilePage.css'
 import { User, UserProfile } from '../Types'
 
 type Props = {
-    user: User | null
+    user: User | null,
+    setUser: React.Dispatch<React.SetStateAction<User | null>>
 }
 
-export default function UserProfilePage({ user }: Props) {
+export default function UserProfilePage({ user, setUser }: Props) {
     const params = useParams()
     const [userFound, setUserFound] = useState<UserProfile | null>(null)
     const [userMatches, setUserMatches] = useState(false)
@@ -40,7 +41,7 @@ export default function UserProfilePage({ user }: Props) {
     return (
 
         <div className='user-profile-page'>
-            <Header user={user} />
+            <Header user={user} setUser={setUser} />
             <div className='user-profile-page-main'>
                 <UserProfileAccountInfo userFound={userFound} userMatches={userMatches} />
                 <hr />

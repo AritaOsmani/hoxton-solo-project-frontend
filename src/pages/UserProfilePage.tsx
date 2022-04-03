@@ -67,7 +67,9 @@ export default function UserProfilePage({ user, setUser }: Props) {
         <div className='user-profile-page'>
             <Header user={user} setUser={setUser} />
             <div className='user-profile-page-main'>
-                <UserProfileAccountInfo userFound={userFound} userMatches={userMatches} userFollows={userFollows} />
+                <UserProfileAccountInfo userFound={userFound} userMatches={userMatches} userFollows={userFollows}
+                    setUserFollowers={setUserFollowers} userFollowers={userFollowers} setUserFollows={setUserFollows}
+                />
                 <hr />
 
                 <div className='posts-saved'>

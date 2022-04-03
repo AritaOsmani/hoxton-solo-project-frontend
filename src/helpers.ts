@@ -32,7 +32,7 @@ export function getFollowedBy(arr: User[]) {
     return result
 }
 
-export function followUser(userToFollowUsername: string) {
+export function followUser(userToFollowUsername: string | undefined) {
     return fetch(`http://localhost:4000/follow`, {
         method: 'PATCH',
         headers: {

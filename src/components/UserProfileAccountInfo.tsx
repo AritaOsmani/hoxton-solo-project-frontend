@@ -1,5 +1,5 @@
 import React from 'react'
-import { followUser } from '../helpers'
+import { followUser, unfollowUser } from '../helpers'
 import { User, UserProfile } from '../Types'
 
 type Props = {
@@ -7,11 +7,12 @@ type Props = {
     userMatches: boolean,
     userFollows: boolean,
     userFollowers: User[],
+    user: User | null,
     setUserFollows: React.Dispatch<React.SetStateAction<boolean>>,
     setUserFollowers: React.Dispatch<React.SetStateAction<User[]>>
 }
 
-export default function UserProfileAccountInfo({ userFound, userMatches, userFollows, setUserFollowers, userFollowers, setUserFollows }: Props) {
+export default function UserProfileAccountInfo({ userFound, userMatches, userFollows, setUserFollowers, userFollowers, setUserFollows, user }: Props) {
     return (
         <div className='user-profile-page-account-info'>
             <img src={userFound?.image} alt="" />
@@ -20,7 +21,16 @@ export default function UserProfileAccountInfo({ userFound, userMatches, userFol
                     <span className='ub'>{userFound?.username} {userFound?.verified ? <i className="far fa-check-circle"></i> : null}</span>
 
                     {userMatches ? <button className='edit-profile-btn'>Edit profile</button> : null}
-                    {userFollows ? <button className='unfollow-btn'>Unfollow</button> : (!userMatches ? <button onClick={() => {
+                    {userFollows ? <button onClick={() => {
+                        unfollowUser(userFound?.username).then(data => {
+                            let followersCopy: User[] = JSON.parse(JSON.stringify(userFollowers))
+                            followersCopy = followersCopy.filter(f => f.username !== user?.username)
+                            console.log(followersCopy)
+                            setUserFollowers(followersCopy)
+                            setUserFollows(false)
+                            console.log(followersCopy.length)
+                        })
+                    }} className='unfollow-btn'>Unfollow</button> : (!userMatches ? <button onClick={() => {
                         followUser(userFound?.username).then(data => {
                             const followersCopy = JSON.parse(JSON.stringify(userFollowers))
                             followersCopy.push(data)

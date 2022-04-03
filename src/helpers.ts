@@ -42,3 +42,14 @@ export function followUser(userToFollowUsername: string | undefined) {
         body: JSON.stringify({ userToFollowUsername })
     }).then(res => res.json())
 }
+
+export function unfollowUser(username: string | undefined) {
+    return fetch(`http://localhost:4000/unfollow`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.token
+        },
+        body: JSON.stringify({ username })
+    }).then(res => res.json())
+}

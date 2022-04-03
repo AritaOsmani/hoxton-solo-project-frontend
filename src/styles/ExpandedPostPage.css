@@ -45,6 +45,7 @@
     align-items: start; */
     display: grid;
     grid-template-rows: 50px 1fr auto;
+    gap: 10px;
 }
 
 .comments-and-stuff-post-author-info {

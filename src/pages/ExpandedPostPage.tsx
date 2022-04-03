@@ -1,4 +1,5 @@
 import React from 'react'
+import ExpandedCommentItem from '../components/ExpandedCommentItem'
 import '../styles/ExpandedPostPage.css'
 
 export default function ExpandedPostPage() {
@@ -23,38 +24,16 @@ export default function ExpandedPostPage() {
                         </div>
 
                         <ul className='expanded-post-page-comments-list'>
-                            <li>Comment</li>
-                            <li>Comment</li>
-                            <li>Comment</li>
-                            <li>Comment</li>
-                            <li>Comment</li>
-                            <li>Comment</li>
-                            <li>Comment</li>
-                            <li>Comment</li>
-                            <li>Comment</li>
-                            <li>Comment</li>
-                            <li>Comment</li>
-                            <li>Comment</li>
-                            <li>Comment</li>
-                            <li>Comment</li>
-                            <li>Comment</li>
-                            <li>Comment</li>
-                            <li>Comment</li>
-                            <li>Comment</li>
-                            <li>Comment</li>
-                            <li>Comment</li>
-                            <li>Comment</li>
-                            <li>Comment</li>
-                            <li>Comment</li>
-                            <li>Comment</li>
-                            <li>Comment</li>
-                            <li>Comment</li>
-                            <li>Comment</li>
-                            <li>Comment</li>
-                            <li>Comment</li>
-                            <li>Comment</li>
-                            <li>Comment</li>
-                            <li>Comment</li>
+                            <ExpandedCommentItem />
+                            <ExpandedCommentItem />
+                            <ExpandedCommentItem />
+                            <ExpandedCommentItem />
+                            <ExpandedCommentItem />
+                            <ExpandedCommentItem />
+                            <ExpandedCommentItem />
+                            <ExpandedCommentItem />
+                            <ExpandedCommentItem />
+
                         </ul>
                     </div>
 

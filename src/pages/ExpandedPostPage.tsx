@@ -1,13 +1,17 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import ExpandedCommentItem from '../components/ExpandedCommentItem'
 import '../styles/ExpandedPostPage.css'
 
 export default function ExpandedPostPage() {
+    const navigate = useNavigate()
     return (
         <div className='expanded-post-page'>
-            <button className='close-btn'><i className="fas fa-times"></i></button>
+            <button onClick={() => {
+                navigate(-1)
+            }} className='close-btn'><i className="fas fa-times"></i></button>
             <div className='expanded-post-main-container'>
-                <img src="https://images.pexels.com/photos/9458756/pexels-photo-9458756.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="" />
+                <img className='expanded-post-image' src="https://images.pexels.com/photos/9458756/pexels-photo-9458756.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="" />
                 <div className='comments-and-stuff'>
 
                     <div className='comments-and-stuff-post-author-info'>

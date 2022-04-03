@@ -7,6 +7,7 @@ import LogIn from './pages/LogIn'
 import SignUp from './pages/SignUp'
 import Main from './pages/Main'
 import UserProfilePage from './pages/UserProfilePage'
+import ExpandedPostPage from './pages/ExpandedPostPage'
 
 function App() {
   const [user, setUser] = useState<User | null>(null)
@@ -38,6 +39,7 @@ function App() {
         }} /> */}
         <Route path='/signup' element={<SignUp setUser={setUser} />} />
         <Route path='//:username' element={<UserProfilePage user={user} setUser={setUser} />} />
+        <Route path='/posts/:id' element={<ExpandedPostPage />} />
 
       </Routes>
 

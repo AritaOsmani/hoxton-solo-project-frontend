@@ -1,0 +1,103 @@
+.expanded-post-page {
+    background-color: rgba(0, 0, 0, 0.7);
+    display: grid;
+    place-content: center;
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.close-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 10px;
+    font-size: 30px;
+    border: none;
+    background-color: unset;
+    color: white;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.expanded-post-main-container {
+    display: grid;
+    grid-template-columns: 500px 500px;
+    place-content: center;
+    /* border: solid 1px black; */
+    padding: 50px;
+}
+
+.expanded-post-main-container .post-user-info {
+    border-bottom: solid 1px rgba(0, 0, 0, 0.2);
+}
+
+.expanded-post-main-container img {
+    height: 600px;
+}
+
+.comments-and-stuff {
+    background-color: white;
+    height: 600px;
+    /* display: grid;
+    align-items: start; */
+    display: grid;
+    grid-template-rows: 50px 1fr auto;
+}
+
+.comments-and-stuff-post-author-info {
+    display: grid;
+    grid-template-columns: 40px auto;
+    border-bottom: solid 1px rgba(0, 0, 0, 0.2);
+    justify-items: start;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 10px;
+}
+
+.comments-and-stuff-post-author-info img {
+    height: 40px;
+    border: solid 1px rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+}
+
+.post-author-info-username {
+    font-weight: 600;
+}
+
+.comments-and-stuff-username-and-bio {
+    display: grid;
+    grid-template-columns: 40px auto;
+    padding: 5px 10px;
+    gap: 10px;
+    place-items: start;
+}
+
+.comments-and-stuff-username-and-bio p {
+    font-size: 13px;
+    text-align: start;
+}
+
+.comments-and-stuff-username-and-bio img {
+    height: 40px;
+    border: solid 1px rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+}
+
+.expanded-post-page-comments-list {
+    /* border: solid 1px black; */
+}
+
+.likes-icons-and-comment-form {
+    border-top: solid 1px rgba(0, 0, 0, 0.2);
+}
+
+.author-and-comments {
+    overflow: auto;
+}
+
+.author-and-comments::-webkit-scrollbar {
+    display: none;
+}

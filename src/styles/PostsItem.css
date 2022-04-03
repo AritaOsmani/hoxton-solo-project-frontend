@@ -12,6 +12,10 @@
     gap: 15px;
 }
 
+.post-user-info span {
+    cursor: pointer;
+}
+
 .post-item-username {
     font-size: 14px;
     font-weight: 600;
@@ -57,6 +61,7 @@
 .username-and-caption-username {
     font-size: 14px;
     font-weight: 600;
+    cursor: pointer;
 }
 
 .username-and-caption-caption {

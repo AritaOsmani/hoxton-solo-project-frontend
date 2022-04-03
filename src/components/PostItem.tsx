@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import '../styles/PostsItem.css'
 import { AddCommentForm, Comment, Like, Post } from '../Types'
 import CommentItem from './CommentItem'
@@ -12,7 +13,7 @@ export default function PostItem({ post }: Props) {
     const [postComments, setPostComments] = useState<Comment[]>([])
     const [liked, setLiked] = useState(false)
     const [postLikes, setPostLikes] = useState<Like[]>([])
-
+    const navigate = useNavigate()
 
     useEffect(() => {
         fetch(`http://localhost:4000/comments/${post.id}`).then(res => res.json())
@@ -100,7 +101,9 @@ export default function PostItem({ post }: Props) {
         <div className='post-item-container'>
             <div className='post-user-info'>
                 <img src={post.user.image} alt="" />
-                <span className='post-item-username'>{post.user.username}</span>
+                <span onClick={() => {
+                    navigate(`/${post.user.username}`)
+                }} className='post-item-username'>{post.user.username}</span>
                 <i className="fal fa-ellipsis-h"></i>
             </div>
             <img className='post-image' src={`${baseUrl}/${post.image}`} alt="" />
@@ -130,7 +133,9 @@ export default function PostItem({ post }: Props) {
             </div>
             <span className='likes'>{`${postLikes.length} likes`}</span>
             <div className='username-and-caption'>
-                <span className='username-and-caption-username'>{post.user.username}</span>
+                <span onClick={() => {
+                    navigate(`/${post.user.username}`)
+                }} className='username-and-caption-username'>{post.user.username}</span>
                 <span className='username-and-caption-caption'>{post.caption}</span>
             </div>
             <div className='post-comm-container'>

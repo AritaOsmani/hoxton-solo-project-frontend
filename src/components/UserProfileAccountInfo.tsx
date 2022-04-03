@@ -3,10 +3,11 @@ import { UserProfile } from '../Types'
 
 type Props = {
     userFound: UserProfile | null,
-    userMatches: boolean
+    userMatches: boolean,
+    userFollows: boolean
 }
 
-export default function UserProfileAccountInfo({ userFound, userMatches }: Props) {
+export default function UserProfileAccountInfo({ userFound, userMatches, userFollows }: Props) {
     return (
         <div className='user-profile-page-account-info'>
             <img src={userFound?.image} alt="" />
@@ -15,6 +16,7 @@ export default function UserProfileAccountInfo({ userFound, userMatches }: Props
                     <span className='ub'>{userFound?.username} {userFound?.verified ? <i className="far fa-check-circle"></i> : null}</span>
 
                     {userMatches ? <button className='edit-profile-btn'>Edit profile</button> : null}
+                    {userFollows ? <button className='unfollow-btn'>Unfollow</button> : (!userMatches ? <button className='f-btn'>Follow</button> : null)}
 
                 </div>
                 <div className='posts-following-followers'>

@@ -41,7 +41,8 @@ export default function SuggestedUser({ suggestedUser, setSuggestedUser, suggest
                 <span className='suggested-user-username'>{suggestedUser.username}</span>
                 {getFollowedBy(followedBy) === '' ? null : <span className='followed-by'>{`Followed by ${getFollowedBy(followedBy)}`}</span>}
             </div>
-            <button className='follow-btn' onClick={() => {
+            <button className='follow-btn' onClick={(e) => {
+                e.stopPropagation()
                 followUser(suggestedUser.username).then(data => {
                     if (data.error) {
                         alert(data.error)

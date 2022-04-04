@@ -108,8 +108,10 @@ export default function PostItem({ post }: Props) {
             body: JSON.stringify({ postId })
         }).then(res => res.json())
             .then(data => {
+                console.log('data: ', data)
                 let likesCopy: Like[] = JSON.parse(JSON.stringify(postLikes))
-                likesCopy = likesCopy.filter(like => like.id === data.id)
+                likesCopy = likesCopy.filter(like => like.id !== data.id)
+                console.log(likesCopy)
                 setPostLikes(likesCopy)
 
             })
@@ -151,7 +153,9 @@ export default function PostItem({ post }: Props) {
 
 
             </div>
+
             <span className='likes'>{`${postLikes.length} likes`}</span>
+
             <div className='username-and-caption'>
                 <span onClick={() => {
                     navigate(`/${post.user.username}`)

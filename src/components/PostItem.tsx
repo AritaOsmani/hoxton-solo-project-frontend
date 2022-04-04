@@ -16,6 +16,24 @@ export default function PostItem({ post }: Props) {
     const navigate = useNavigate()
 
     useEffect(() => {
+        fetch(`http://localhost:4000/checkIfLiked`, {
+            method: 'POST',
+            headers: {
+                Authorization: localStorage.token,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ postId: post.id })
+        }).then(res => res.json())
+            .then(data => {
+                if (data.error) {
+                    setLiked(false)
+                } else {
+                    setLiked(true)
+                }
+            })
+    }, [])
+
+    useEffect(() => {
         fetch(`http://localhost:4000/comments/${post.id}`).then(res => res.json())
             .then(data => {
                 if (data.error) {

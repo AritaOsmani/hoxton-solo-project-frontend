@@ -1,42 +1,59 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 import ExpandedCommentItem from '../components/ExpandedCommentItem'
 import '../styles/ExpandedPostPage.css'
+import { Post, Comment } from '../Types'
 
 export default function ExpandedPostPage() {
+    const params = useParams()
     const navigate = useNavigate()
+    const [post, setPost] = useState<Post | null>(null)
+    const [postComments, setPostComments] = useState<Comment[]>([])
+    const baseURL = 'http://localhost:4000'
+
+    useEffect(() => {
+        fetch(`http://localhost:4000/post/${Number(params.id)}`).then(res => res.json())
+            .then(data => {
+                if (data.error) {
+                    alert(data.error)
+                } else {
+                    setPost(data)
+                }
+            })
+    }, [params.id])
+    useEffect(() => {
+        fetch(`http://localhost:4000/comments/${Number(params.id)}`).then(res => res.json())
+            .then(data => {
+                if (data.error) {
+                    alert(data.error)
+                } else {
+                    setPostComments(data)
+                }
+            })
+    }, [])
+
     return (
         <div className='expanded-post-page'>
             <button onClick={() => {
                 navigate(-1)
             }} className='close-btn'><i className="fas fa-times"></i></button>
             <div className='expanded-post-main-container'>
-                <img className='expanded-post-image' src="https://images.pexels.com/photos/9458756/pexels-photo-9458756.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="" />
+                <img className='expanded-post-image' src={`${baseURL}/${post?.image}`} alt="" />
                 <div className='comments-and-stuff'>
 
                     <div className='comments-and-stuff-post-author-info'>
-                        <img src="https://avatars.dicebear.com/api/avataaars/Arita.svg" alt="" />
-                        <span className='post-author-info-username'>arita</span>
+                        <img src={post?.user.image} alt="" />
+                        <span className='post-author-info-username'>{post?.user.username}</span>
                     </div>
 
                     <div className='author-and-comments'>
                         <div className='comments-and-stuff-username-and-bio'>
-                            <img src="https://avatars.dicebear.com/api/avataaars/Arita.svg" alt="" />
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae, maxime.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae, maxime.
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae, maxime.Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae, maxime.
-                            </p>
+                            <img src={post?.user.image} alt="" />
+                            <p> {post?.caption} </p>
                         </div>
 
                         <ul className='expanded-post-page-comments-list'>
-                            <ExpandedCommentItem />
-                            <ExpandedCommentItem />
-                            <ExpandedCommentItem />
-                            <ExpandedCommentItem />
-                            <ExpandedCommentItem />
-                            <ExpandedCommentItem />
-                            <ExpandedCommentItem />
-                            <ExpandedCommentItem />
-                            <ExpandedCommentItem />
+                            {postComments.map(postComment => <ExpandedCommentItem key={postComment.id} postComment={postComment} />)}
 
                         </ul>
                     </div>
@@ -57,7 +74,7 @@ export default function ExpandedPostPage() {
                             </div>
 
                         </div>
-                        <span className='likes'>1000likes</span>
+                        <span className='likes'>{`${post?._count.likes} likes`}</span>
                         <form action="" className='add-comment-form'
                         //     onSubmit={(e) => {
                         //     e.preventDefault()

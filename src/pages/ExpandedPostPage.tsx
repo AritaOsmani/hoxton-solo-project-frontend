@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import ExpandedCommentItem from '../components/ExpandedCommentItem'
 import '../styles/ExpandedPostPage.css'
-import { Post, Comment } from '../Types'
+import { Post, Comment, AddCommentForm } from '../Types'
 
 export default function ExpandedPostPage() {
     const params = useParams()
@@ -21,6 +21,7 @@ export default function ExpandedPostPage() {
                 }
             })
     }, [params.id])
+
     useEffect(() => {
         fetch(`http://localhost:4000/comments/${Number(params.id)}`).then(res => res.json())
             .then(data => {
@@ -31,6 +32,27 @@ export default function ExpandedPostPage() {
                 }
             })
     }, [])
+
+    function addComment(content: string, postId: number) {
+        fetch(`http://localhost:4000/comments`, {
+            method: 'POST',
+            headers: {
+                Authorization: localStorage.token,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ content, postId })
+        }).then(res => res.json())
+            .then(data => {
+                if (data.error) {
+                    alert(data.error)
+                } else {
+                    const commentsCopy: Comment[] = JSON.parse(JSON.stringify(postComments))
+                    commentsCopy.push(data)
+                    setPostComments(commentsCopy)
+
+                }
+            })
+    }
 
     return (
         <div className='expanded-post-page'>
@@ -76,13 +98,13 @@ export default function ExpandedPostPage() {
                         </div>
                         <span className='likes'>{`${post?._count.likes} likes`}</span>
                         <form action="" className='add-comment-form'
-                        //     onSubmit={(e) => {
-                        //     e.preventDefault()
-                        //     const formEl = e.target as AddCommentForm
-                        //     const content = formEl.comment.value;
-                        //     addComment(content, post.id)
-                        //     formEl.reset()
-                        // }}
+                            onSubmit={(e) => {
+                                e.preventDefault()
+                                const formEl = e.target as AddCommentForm
+                                const content = formEl.comment.value;
+                                addComment(content, Number(params.id))
+                                formEl.reset()
+                            }}
                         >
                             <svg aria-label="Emoji" className="_8-yf5 emoji" color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 24 24" width="24"><path d="M15.83 10.997a1.167 1.167 0 101.167 1.167 1.167 1.167 0 00-1.167-1.167zm-6.5 1.167a1.167 1.167 0 10-1.166 1.167 1.167 1.167 0 001.166-1.167zm5.163 3.24a3.406 3.406 0 01-4.982.007 1 1 0 10-1.557 1.256 5.397 5.397 0 008.09 0 1 1 0 00-1.55-1.263zM12 .503a11.5 11.5 0 1011.5 11.5A11.513 11.513 0 0012 .503zm0 21a9.5 9.5 0 119.5-9.5 9.51 9.51 0 01-9.5 9.5z"></path></svg>
                             <input type="text" name="comment" placeholder='Add a comment...' />

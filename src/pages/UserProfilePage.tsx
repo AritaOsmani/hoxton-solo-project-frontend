@@ -9,10 +9,11 @@ import { User, UserProfile } from '../Types'
 
 type Props = {
     user: User | null,
-    setUser: React.Dispatch<React.SetStateAction<User | null>>
+    setUser: React.Dispatch<React.SetStateAction<User | null>>,
+    setModal: React.Dispatch<React.SetStateAction<string>>
 }
 
-export default function UserProfilePage({ user, setUser }: Props) {
+export default function UserProfilePage({ user, setUser, setModal }: Props) {
     const params = useParams()
     const [userFound, setUserFound] = useState<UserProfile | null>(null)
     const [userMatches, setUserMatches] = useState(false)
@@ -65,7 +66,7 @@ export default function UserProfilePage({ user, setUser }: Props) {
     return (
 
         <div className='user-profile-page'>
-            <Header user={user} setUser={setUser} />
+            <Header user={user} setUser={setUser} setModal={setModal} />
             <div className='user-profile-page-main'>
                 <UserProfileAccountInfo userFound={userFound} userMatches={userMatches} userFollows={userFollows}
                     setUserFollowers={setUserFollowers} userFollowers={userFollowers} setUserFollows={setUserFollows} user={user}

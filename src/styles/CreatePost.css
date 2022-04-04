@@ -1,0 +1,60 @@
+.modal-wrapper {
+    background-color: rgba(0, 0, 0, 0.6);
+    display: grid;
+    place-content: center;
+    padding: 30px;
+    position: fixed;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 30;
+}
+
+.add-post-form {
+    border: solid 1px black;
+    display: grid;
+    gap: 15px;
+    padding: 50px;
+    background-color: white;
+    width: 500px;
+    place-content: center;
+}
+
+.selected-img {
+    width: 300px;
+    height: 300px;
+}
+
+.add-post-form textarea {
+    resize: none;
+    padding: 5px;
+    outline: none;
+}
+
+.add-post-form h1 {
+    margin-bottom: 20px;
+}
+
+.create-btn {
+    padding: 8px 0;
+    background-color: #0095f6;
+    border: none;
+    font-weight: 600;
+    color: white;
+    border-radius: 10px;
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    padding: 20px;
+    font-size: 30px;
+    color: white;
+    border: none;
+    background-color: unset;
+    font-weight: 600;
+    cursor: pointer;
+}

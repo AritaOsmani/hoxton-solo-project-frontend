@@ -1,8 +1,15 @@
 import axios from 'axios'
 import React, { useState } from 'react'
-import { AddPostForm, Post } from '../Types'
+import { AddPostForm, Post, User } from '../Types'
+import '../styles/CreatePost.css'
+import { useNavigate } from 'react-router-dom'
 
-export default function CreatePost() {
+type Props = {
+    user: User | null,
+    setModal: React.Dispatch<React.SetStateAction<string>>
+}
+
+export default function CreatePost({ user, setModal }: Props) {
     const [file, setFile] = useState(null)
     const [message, setMessage] = useState('')
     const [fileName, setFileName] = useState('')
@@ -10,6 +17,7 @@ export default function CreatePost() {
     const [caption, setCaption] = useState('')
     console.log('file: ', file)
     const [fetchedPost, setFetchedPost] = useState<Post | null>(null)
+    const navigate = useNavigate()
 
     async function addPost() {
         await fetch(`http://localhost:4000/createPost`, {
@@ -30,45 +38,59 @@ export default function CreatePost() {
     }
 
     return (
-        <div>
-            <form action="post" encType='multipart/form-data' method='post' onSubmit={async e => {
-                e.preventDefault()
-                const formEl = e.target as AddPostForm
-                const formData = new FormData()
-                //@ts-ignore
-                formData.append('file', file)
-                console.log('data: ', formData)
+        <div className='modal-wrapper'>
+            <button onClick={() => {
+                setModal('')
+            }} className='modal-close-btn'>X</button>
 
-                try {
-                    const res = await axios.post('http://localhost:4000/upload', formData, {
-                        headers: {
-                            'Content-Type': 'multipart/form-data'
-                        }
-                    })
-                    const { fileName, filePath } = res.data
-                    setUploadedFile(res.data)
-                    addPost()
-                } catch (err) {
+            <form className='add-post-form' action="post" encType='multipart/form-data' method='post'
+                onSubmit={async e => {
+                    e.preventDefault()
+                    const formEl = e.target as AddPostForm
+                    const formData = new FormData()
                     //@ts-ignore
-                    if (err.response.status === 500) {
-                        setMessage('There was a problem with the server');
-                    } else {
-                        //@ts-ignore
-                        setMessage(err.response.data.msg);
-                    }
-                }
-            }}>
+                    formData.append('file', file)
+                    console.log('data: ', formData)
 
+                    try {
+                        const res = await axios.post('http://localhost:4000/upload', formData, {
+                            headers: {
+                                'Content-Type': 'multipart/form-data'
+                            }
+                        })
+                        const { fileName, filePath } = res.data
+                        setUploadedFile(res.data)
+                        addPost()
+                        formEl.reset()
+                        setModal('')
+                        navigate(`/${user?.username}`)
+
+                    } catch (err) {
+                        //@ts-ignore
+                        if (err.response.status === 500) {
+                            setMessage('There was a problem with the server');
+                        } else {
+                            //@ts-ignore
+                            setMessage(err.response.data.msg);
+                        }
+                    }
+
+                }}>
+                <h1>Create new post</h1>
                 <input onChange={(e: any) => {
                     setFile(e.target.files[0])
                     setFileName(e.target.files[0].name)
                 }}
-                    type="file" name="file" id="" placeholder='Chose filee' />
-                <input onChange={(e: any) => {
+                    type="file" name="file" id="" />
+                {file ? <img className='selected-img' src={`http://localhost:4000/${fileName}`} /> : null}
+                <textarea onChange={(e: any) => {
                     console.log('caption:', caption)
                     setCaption(e.target.value)
-                }} type="text" name="caption" id="" placeholder='Add a caption' />
+                }} name="caption" id="" cols={10} rows={5} placeholder='Add a caption'></textarea>
+
+                <button className='create-btn'>Create Post</button>
             </form>
+
         </div>
     )
 }

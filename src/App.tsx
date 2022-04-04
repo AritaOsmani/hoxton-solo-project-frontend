@@ -12,6 +12,7 @@ import CreatePost from './components/CreatePost'
 
 function App() {
   const [user, setUser] = useState<User | null>(null)
+  const [modal, setModal] = useState('')
 
   useEffect(() => {
     if (localStorage.token) {
@@ -32,16 +33,17 @@ function App() {
   return (
     <div className="App">
 
+      {modal === 'add-post' && <CreatePost user={user} setModal={setModal} />}
       <Routes>
-        {user ? <Route path='/' element={<Main user={user} setUser={setUser} />} /> : <Route path='/' element={<LogIn setUser={setUser} />} />}
+        {user ? <Route path='/' element={<Main user={user} setUser={setUser} setModal={setModal} />} /> : <Route path='/' element={<LogIn setUser={setUser} />} />}
         {/* <Route path='/playstore' element={() => {
           window.location.href = 'https://play.google.com/store/apps/details?id=com.instagram.android&referrer=utm_source%3Dinstagramweb&utm_campaign=loginPage&ig_mid=80224A3D-BEEF-4D92-9F44-4A531DCDF7B6&utm_content=lo&utm_medium=badge', true
           return null;
         }} /> */}
         <Route path='/signup' element={<SignUp setUser={setUser} />} />
-        <Route path='//:username' element={<UserProfilePage user={user} setUser={setUser} />} />
+        <Route path='//:username' element={<UserProfilePage user={user} setUser={setUser} setModal={setModal} />} />
         <Route path='/posts/:id' element={<ExpandedPostPage />} />
-        <Route path='/create' element={<CreatePost />} />
+        {/* <Route path='/create' element={<CreatePost user={user} />} /> */}
 
       </Routes>
 

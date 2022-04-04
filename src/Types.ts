@@ -84,3 +84,9 @@ export type ProfilePost = {
     updatedAt: string,
     userId: number
 }
+
+export type AddPostForm = HTMLFormElement & {
+    uploaded_file: HTMLInputElement,
+    caption: HTMLInputElement,
+    reset: () => void
+}

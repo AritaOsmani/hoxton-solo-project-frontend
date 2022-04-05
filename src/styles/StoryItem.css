@@ -1,0 +1,25 @@
+.story-item-container {
+    display: grid;
+    place-content: center;
+    cursor: pointer;
+}
+
+.image-container {
+    /* background: linear-gradient(#e66465, #9198e5); */
+    background: radial-gradient(circle farthest-corner at 35% 90%, #fec564, transparent 50%), radial-gradient(circle farthest-corner at 0 140%, #fec564, transparent 50%), radial-gradient(ellipse farthest-corner at 0 -25%, #f77638, transparent 50%), radial-gradient(ellipse farthest-corner at 20% -50%, #f77638, transparent 50%), radial-gradient(ellipse farthest-corner at 100% 0, #d9317a, transparent 50%), radial-gradient(ellipse farthest-corner at 60% -20%, #bc318f, transparent 50%), radial-gradient(ellipse farthest-corner at 100% 100%, #d9317a, transparent), linear-gradient(#6559ca, #bc318f 30%, #e33f5f 50%, #f77638 70%, #fec66d 100%);
+    border-radius: 50%;
+    padding: 3px;
+    display: grid;
+    place-content: center;
+}
+
+.story-item-container img {
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    border-radius: 50%;
+}
+
+.story-item-container span {
+    font-size: 12px;
+}

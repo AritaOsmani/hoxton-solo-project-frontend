@@ -49,20 +49,26 @@ export default function UserProfilePage({ user, setUser, setModal }: Props) {
                     alert(data.error)
                 } else {
                     setUserFollowers(data)
+                    const matches = data.find((u: any) => u.id === user?.id)
+                    if (matches) {
+                        setUserFollows(true)
+                    } else {
+                        setUserFollows(false)
+                    }
                 }
             })
     }, [params.username])
 
-    useEffect(() => {
+    // useEffect(() => {
+    //     // if (userFollowers.length === 0) return
+    //     const matches = userFollowers.find(u => u.id === user?.id)
+    //     if (matches) {
+    //         setUserFollows(true)
+    //     } else {
+    //         setUserFollows(false)
+    //     }
 
-        const matches = userFollowers.find(u => u.id === user?.id)
-        if (matches) {
-            setUserFollows(true)
-        } else {
-            setUserFollows(false)
-        }
-
-    }, [userFound, user, params.username])
+    // }, [userFound, user, params.username])
 
     useEffect(() => {
         fetch(`http://localhost:4000/getUserPosts/${params.username}`).then(res => res.json())

@@ -5,7 +5,7 @@ import Header from '../components/Header'
 import UserProfileAccountInfo from '../components/UserProfileAccountInfo'
 import UserProfilePost from '../components/UserProfilePost'
 import '../styles/UserProfilePage.css'
-import { User, UserProfile } from '../Types'
+import { Post, User, UserProfile } from '../Types'
 
 type Props = {
     user: User | null,
@@ -19,6 +19,7 @@ export default function UserProfilePage({ user, setUser, setModal }: Props) {
     const [userMatches, setUserMatches] = useState(false)
     const [userFollows, setUserFollows] = useState(false)
     const [userFollowers, setUserFollowers] = useState<User[]>([])
+    const [userPosts, setUserPosts] = useState<Post[]>([])
 
     useEffect(() => {
         fetch(`http://localhost:4000/users/${params.username}`).then(res => res.json())
@@ -63,12 +64,23 @@ export default function UserProfilePage({ user, setUser, setModal }: Props) {
 
     }, [userFound, user])
 
+    useEffect(() => {
+        fetch(`http://localhost:4000/getUserPosts/${params.username}`).then(res => res.json())
+            .then(data => {
+                if (data.error) {
+                    alert(data.error)
+                } else {
+                    setUserPosts(data)
+                }
+            })
+    }, [params.username])
+
     return (
 
         <div className='user-profile-page'>
             <Header user={user} setUser={setUser} setModal={setModal} />
             <div className='user-profile-page-main'>
-                <UserProfileAccountInfo userFound={userFound} userMatches={userMatches} userFollows={userFollows}
+                <UserProfileAccountInfo userFound={userFound} userMatches={userMatches} userFollows={userFollows} userPosts={userPosts}
                     setUserFollowers={setUserFollowers} userFollowers={userFollowers} setUserFollows={setUserFollows} user={user}
                 />
                 <hr />

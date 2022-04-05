@@ -1,6 +1,6 @@
 import React from 'react'
 import { followUser, unfollowUser } from '../helpers'
-import { User, UserProfile } from '../Types'
+import { Post, User, UserProfile } from '../Types'
 
 type Props = {
     userFound: UserProfile | null,
@@ -8,11 +8,12 @@ type Props = {
     userFollows: boolean,
     userFollowers: User[],
     user: User | null,
+    userPosts: Post[],
     setUserFollows: React.Dispatch<React.SetStateAction<boolean>>,
     setUserFollowers: React.Dispatch<React.SetStateAction<User[]>>
 }
 
-export default function UserProfileAccountInfo({ userFound, userMatches, userFollows, setUserFollowers, userFollowers, setUserFollows, user }: Props) {
+export default function UserProfileAccountInfo({ userFound, userMatches, userFollows, setUserFollowers, userFollowers, setUserFollows, user, userPosts }: Props) {
     return (
         <div className='user-profile-page-account-info'>
             <img src={userFound?.image} alt="" />
@@ -41,7 +42,7 @@ export default function UserProfileAccountInfo({ userFound, userMatches, userFol
 
                 </div>
                 <div className='posts-following-followers'>
-                    <span>{`${userFound?._count.posts} posts`} </span>
+                    <span>{`${userPosts.length} posts`} </span>
                     <span>{`${userFollowers.length} followers`} </span>
                     <span>{`${userFound?._count.following} following`}</span>
                 </div>

@@ -62,7 +62,7 @@ export default function UserProfilePage({ user, setUser, setModal }: Props) {
             setUserFollows(false)
         }
 
-    }, [userFound, user])
+    }, [userFound, user, params.username])
 
     useEffect(() => {
         fetch(`http://localhost:4000/getUserPosts/${params.username}`).then(res => res.json())

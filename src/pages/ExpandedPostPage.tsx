@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import ExpandedCommentItem from '../components/ExpandedCommentItem'
 import '../styles/ExpandedPostPage.css'
-import { Post, Comment, AddCommentForm, Like, User } from '../Types'
+import { Post, Comment, AddCommentForm, Like, User, Reply } from '../Types'
 
 export default function ExpandedPostPage() {
     const params = useParams()
@@ -16,6 +16,7 @@ export default function ExpandedPostPage() {
     const [replyingTo, setReplyingTo] = useState<User | null>(null)
     const [inputValue, setInputValue] = useState('')
     const [commentToReplyId, setCommentToReplyId] = useState(0)
+    const [commentReplies, setCommentReplies] = useState<Reply[]>([])
 
     useEffect(() => {
         fetch(`http://localhost:4000/checkIfLiked`, {
@@ -67,6 +68,20 @@ export default function ExpandedPostPage() {
                 }
             })
     }, [])
+
+    useEffect(() => {
+        if (commentToReplyId) {
+            fetch(`http://localhost:4000/commentReplies/${commentToReplyId}`).then(res => res.json())
+                .then(data => {
+                    if (data.error) {
+                        alert(data.error)
+                    } else {
+                        setCommentReplies(data)
+                    }
+                })
+        }
+
+    }, [commentToReplyId])
 
     function addComment(content: string, postId: number) {
         fetch(`http://localhost:4000/comments`, {
@@ -151,7 +166,7 @@ export default function ExpandedPostPage() {
                         </div>
 
                         <ul className='expanded-post-page-comments-list'>
-                            {postComments.map(postComment => <ExpandedCommentItem key={postComment.id} postComment={postComment} setReplyingTo={setReplyingTo} setInputValue={setInputValue} setCommentToReplyId={setCommentToReplyId} />)}
+                            {postComments.map(postComment => <ExpandedCommentItem key={postComment.id} postComment={postComment} setReplyingTo={setReplyingTo} setInputValue={setInputValue} setCommentToReplyId={setCommentToReplyId} commentReplies={commentReplies} commentToReplyId={commentToReplyId} />)}
 
                         </ul>
                     </div>

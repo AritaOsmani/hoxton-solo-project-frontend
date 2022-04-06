@@ -90,3 +90,11 @@ export type AddPostForm = HTMLFormElement & {
     caption: HTMLInputElement,
     reset: () => void
 }
+
+export type Story = {
+    id: number,
+    content: string,
+    status: string,
+    userId: number,
+    user: User
+}

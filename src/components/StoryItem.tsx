@@ -1,14 +1,18 @@
 import React from 'react'
 import '../styles/StoryItem.css'
+import { Story } from '../Types'
+type Props = {
+    story: Story
+}
 
-export default function StoryItem() {
+export default function StoryItem({ story }: Props) {
     return (
         <div className='story-item-container'>
             <div className='image-container'>
-                <img src="https://avatars.dicebear.com/api/avataaars/AritaOsmani.svg" alt="" />
+                <img src={story.user.image} alt="" />
             </div>
 
-            <span>arita</span>
+            <span>{story.user.username}</span>
         </div>
     )
 }

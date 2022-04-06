@@ -16,8 +16,9 @@
 .story-item-container img {
     width: 60px;
     height: 60px;
-    background-color: white;
     border-radius: 50%;
+    background-color: white;
+    padding: 2px;
 }
 
 .story-item-container span {

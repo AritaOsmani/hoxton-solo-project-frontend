@@ -1,9 +1,16 @@
 .expanded-page-comment {
     display: grid;
-    grid-template-columns: 30px auto;
+    grid-template-columns: 30px auto auto;
     gap: 10px;
     padding: 10px;
     /* border: solid 1px black; */
+    justify-content: start;
+    align-content: center;
+}
+
+.comment-username {
+    font-size: 12px;
+    font-weight: 600;
 }
 
 .expanded-page-comment img {
@@ -18,7 +25,8 @@
 }
 
 .content-and-reply-btn {
-    /* justify-self: start; */
+
+    /* border: solid 1px red; */
 }
 
 .reply-btn {

@@ -16,6 +16,7 @@ export default function ExpandedCommentItem({ postComment, setReplyingTo, setInp
     return (
         <div className='expanded-page-comment'>
             <img src={postComment.user.image} alt="" />
+            <span className='comment-username'>{postComment.user.username}</span>
             <div className='content-and-reply-btn'>
                 <p>{postComment.content}</p>
                 <button onClick={() => {

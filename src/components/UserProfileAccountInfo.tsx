@@ -22,6 +22,7 @@ export default function UserProfileAccountInfo({ userFound, userMatches, userFol
                     <span className='ub'>{userFound?.username} {userFound?.verified ? <i className="far fa-check-circle"></i> : null}</span>
 
                     {userMatches ? <button className='edit-profile-btn'>Edit profile</button> : null}
+
                     {userFollows ? <button onClick={() => {
                         unfollowUser(userFound?.username).then(data => {
                             let followersCopy: User[] = JSON.parse(JSON.stringify(userFollowers))

@@ -10,6 +10,15 @@ export type User = {
     accountStatus: string,
     verified: boolean
 }
+export type Reply = {
+    id: number,
+    content: string,
+    createdAt: string,
+    updatedAt: string,
+    user: User,
+    commentId: number,
+    userId: number
+}
 export type Comment = {
     id: number,
     content: string,
@@ -17,7 +26,8 @@ export type Comment = {
     updatedAt: string,
     userId: number,
     postId: number,
-    user: User
+    user: User,
+    replies: Reply[]
 }
 export type Like = {
     id: number,

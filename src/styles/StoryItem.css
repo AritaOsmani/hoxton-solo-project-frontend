@@ -11,6 +11,7 @@
     padding: 3px;
     display: grid;
     place-content: center;
+
 }
 
 .story-item-container img {
@@ -19,6 +20,10 @@
     border-radius: 50%;
     background-color: white;
     padding: 2px;
+}
+
+.viewed-story {
+    filter: opacity(70%)
 }
 
 .story-item-container span {

@@ -8,7 +8,7 @@ type Props = {
 export default function StoryItem({ story }: Props) {
     return (
         <div className='story-item-container'>
-            <div className='image-container'>
+            <div className={story.status === 'active' ? 'image-container' : 'viewed-story'}>
                 <img src={story.user.image} alt="" />
             </div>
 

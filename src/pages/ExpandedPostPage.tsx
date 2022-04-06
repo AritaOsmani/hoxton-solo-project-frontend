@@ -165,6 +165,11 @@ export default function ExpandedPostPage() {
             })
     }
 
+    useEffect(() => {
+        if (inputValue === '') {
+            setReplyingTo(null)
+        }
+    }, [inputValue])
     return (
         <div className='expanded-post-page'>
             <button onClick={() => {

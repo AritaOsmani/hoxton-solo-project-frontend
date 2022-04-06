@@ -15,8 +15,6 @@ export default function ExpandedPostPage() {
 
     const [replyingTo, setReplyingTo] = useState<User | null>(null)
     const [inputValue, setInputValue] = useState('')
-    const [commentReplying, setCommentReplying] = useState(0)
-    const [repliesForComment, setRepliesForComment] = useState<Comment[]>([])
 
     useEffect(() => {
         fetch(`http://localhost:4000/checkIfLiked`, {
@@ -131,27 +129,6 @@ export default function ExpandedPostPage() {
             })
     }
 
-
-    function addReply(commentId: number, content: string) {
-        fetch(`http://localhost:4000/addReply`, {
-            method: 'POST',
-            headers: {
-                Authorization: localStorage.token,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ commentId, content })
-        }).then(res => res.json())
-            .then(data => {
-                if (data.error) {
-                    alert(data.error)
-                } else {
-                    const repliesCopy = JSON.parse(JSON.stringify(repliesForComment))
-                    repliesForComment.push(data)
-                    setRepliesForComment(repliesCopy)
-                }
-            })
-    }
-
     return (
         <div className='expanded-post-page'>
             <button onClick={() => {
@@ -173,9 +150,7 @@ export default function ExpandedPostPage() {
                         </div>
 
                         <ul className='expanded-post-page-comments-list'>
-                            {postComments.map(postComment => <ExpandedCommentItem key={postComment.id} postComment={postComment} setReplyingTo={setReplyingTo} setInputValue={setInputValue} setCommentReplying={setCommentReplying}
-                                repliesForComment={repliesForComment} setRepliesForComment={setRepliesForComment}
-                            />)}
+                            {postComments.map(postComment => <ExpandedCommentItem key={postComment.id} postComment={postComment} setReplyingTo={setReplyingTo} setInputValue={setInputValue} />)}
 
                         </ul>
                     </div>
@@ -212,8 +187,6 @@ export default function ExpandedPostPage() {
                                 const formEl = e.target as AddCommentForm
                                 if (replyingTo) {
                                     //add reply
-                                    addReply(commentReplying, inputValue)
-                                    setInputValue('')
                                 } else {
 
                                     // const content = formEl.comment.value;

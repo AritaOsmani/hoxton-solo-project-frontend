@@ -9,6 +9,7 @@ import Main from './pages/Main'
 import UserProfilePage from './pages/UserProfilePage'
 import ExpandedPostPage from './pages/ExpandedPostPage'
 import CreatePost from './components/CreatePost'
+import StoryPage from './pages/StoryPage'
 
 function App() {
   const [user, setUser] = useState<User | null>(null)
@@ -44,7 +45,7 @@ function App() {
         <Route path='//:username' element={<UserProfilePage user={user} setUser={setUser} setModal={setModal} />} />
         <Route path='/posts/:id' element={<ExpandedPostPage />} />
         {/* <Route path='/create' element={<CreatePost user={user} />} /> */}
-
+        <Route path='/stories/:id' element={<StoryPage />} />
       </Routes>
 
     </div>

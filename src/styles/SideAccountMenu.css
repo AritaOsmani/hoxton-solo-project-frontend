@@ -10,6 +10,11 @@
     right: 50px; */
 }
 
+.side-account-wrapper {
+    position: sticky;
+    top: 80px;
+}
+
 .user-info {
     display: grid;
     grid-template-columns: 60px auto;

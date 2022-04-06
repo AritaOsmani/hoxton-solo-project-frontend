@@ -23,7 +23,7 @@ export default function ExpandedCommentItem({ postComment, setReplyingTo, setInp
             }
         })
 
-    }, [repliesForComment])
+    }, [])
     return (
         <div className='expanded-page-comment'>
             <img src={postComment.user.image} alt="" />

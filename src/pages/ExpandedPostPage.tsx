@@ -15,6 +15,7 @@ export default function ExpandedPostPage() {
 
     const [replyingTo, setReplyingTo] = useState<User | null>(null)
     const [inputValue, setInputValue] = useState('')
+    const [commentToReplyId, setCommentToReplyId] = useState(0)
 
     useEffect(() => {
         fetch(`http://localhost:4000/checkIfLiked`, {
@@ -150,7 +151,7 @@ export default function ExpandedPostPage() {
                         </div>
 
                         <ul className='expanded-post-page-comments-list'>
-                            {postComments.map(postComment => <ExpandedCommentItem key={postComment.id} postComment={postComment} setReplyingTo={setReplyingTo} setInputValue={setInputValue} />)}
+                            {postComments.map(postComment => <ExpandedCommentItem key={postComment.id} postComment={postComment} setReplyingTo={setReplyingTo} setInputValue={setInputValue} setCommentToReplyId={setCommentToReplyId} />)}
 
                         </ul>
                     </div>

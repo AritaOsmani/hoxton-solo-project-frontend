@@ -6,9 +6,10 @@ type Props = {
     postComment: Comment,
     setReplyingTo: React.Dispatch<React.SetStateAction<User | null>>
     setInputValue: React.Dispatch<React.SetStateAction<string>>
+    setCommentToReplyId: React.Dispatch<React.SetStateAction<number>>
 }
 
-export default function ExpandedCommentItem({ postComment, setReplyingTo, setInputValue }: Props) {
+export default function ExpandedCommentItem({ postComment, setReplyingTo, setInputValue, setCommentToReplyId }: Props) {
     return (
         <div className='expanded-page-comment'>
             <img src={postComment.user.image} alt="" />
@@ -16,6 +17,7 @@ export default function ExpandedCommentItem({ postComment, setReplyingTo, setInp
             <button onClick={() => {
                 setReplyingTo(postComment.user)
                 setInputValue(`@${postComment.user.username} `)
+                setCommentToReplyId(postComment.id)
             }} className='reply-btn'>reply</button>
         </div>
     )

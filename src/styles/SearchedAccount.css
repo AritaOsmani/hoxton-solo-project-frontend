@@ -2,6 +2,7 @@
     display: grid;
     grid-template-columns: 40px auto;
     gap: 10px;
+    cursor: pointer;
 }
 
 .searched-account-container img {

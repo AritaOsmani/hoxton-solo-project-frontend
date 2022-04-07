@@ -49,6 +49,34 @@ export default function Search({ setRecentMenu, recentMenu }: Props) {
 
     }, [inputValue])
 
+    function addRecent(username: string) {
+        fetch(`http://localhost:4000/search`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: localStorage.token
+            },
+            body: JSON.stringify({ search: username })
+        }).then(res => res.json())
+            .then(data => {
+                if (data.error) {
+                    alert(data.error)
+                } else {
+
+                    const recentCopy: User[] = JSON.parse(JSON.stringify(recentSearches))
+                    for (const acc of recentSearches) {
+                        const alreadySearched = data.searching.filter((d: any) => d.id === acc.id)
+                        if (alreadySearched) return
+                    }
+
+                    recentCopy.push(data)
+                    setRecentSearches(recentCopy)
+
+
+                }
+            })
+    }
+
     return (
         <>
             <input onChange={(e) => {
@@ -67,12 +95,12 @@ export default function Search({ setRecentMenu, recentMenu }: Props) {
                 <h3>Recents</h3>
 
                 {inputValue ? <ul>
-                    {searchResults.map(recentSearch => <SearchedAccount key={recentSearch.id} recentSearch={recentSearch} />)}
+                    {searchResults.map(recentSearch => <SearchedAccount key={recentSearch.id} recentSearch={recentSearch} addRecent={addRecent} />)}
 
                 </ul>
                     :
                     <ul>
-                        {recentSearches.map(recentSearch => <SearchedAccount key={recentSearch.id} recentSearch={recentSearch} />)}
+                        {recentSearches.map(recentSearch => <SearchedAccount key={recentSearch.id} recentSearch={recentSearch} addRecent={addRecent} />)}
 
                     </ul>
                 }

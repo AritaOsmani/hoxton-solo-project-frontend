@@ -1,0 +1,27 @@
+.searched-account-container {
+    display: grid;
+    grid-template-columns: 40px auto;
+    gap: 10px;
+}
+
+.searched-account-container img {
+    height: 40px;
+    border: solid 1px rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+}
+
+.searched-account-info {
+    display: grid;
+    gap: 5px;
+    justify-items: start;
+    align-items: center;
+}
+
+.searched-account-info-username {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.searched-account-info-bio {
+    font-size: 10px;
+}

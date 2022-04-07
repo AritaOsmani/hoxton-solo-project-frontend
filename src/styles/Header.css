@@ -28,6 +28,7 @@
     border: none;
     outline: none;
     border-radius: 5px;
+    position: relative;
 }
 
 .account-stuff {
@@ -75,4 +76,28 @@
 .header-menu span:hover {
     color: #2C3333;
     cursor: pointer;
+}
+
+.recents {
+    position: absolute;
+    top: 48px;
+    border: solid 1px rgba(0, 0, 0, 0.2);
+    left: 575px;
+    padding: 10px 20px;
+    z-index: 10;
+    background-color: white;
+    display: grid;
+    place-items: start;
+    gap: 20px;
+    width: 300px;
+}
+
+.recents h3 {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.recents ul {
+    display: grid;
+    gap: 10px;
 }

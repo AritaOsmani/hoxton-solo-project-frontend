@@ -1,4 +1,4 @@
-import { User } from "./Types";
+import { Post, User } from "./Types";
 
 export function comparePasswords(pass1: string, pass2: string) {
     return pass1 === pass2
@@ -52,4 +52,9 @@ export function unfollowUser(username: string | undefined) {
         },
         body: JSON.stringify({ username })
     }).then(res => res.json())
+}
+
+export function shufflePosts(posts: Post[]) {
+    const shuffled = posts.sort(() => Math.random() - 0.5)
+    return shuffled
 }

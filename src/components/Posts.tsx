@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { shufflePosts } from '../helpers'
 import '../styles/Posts.css'
 import { Comment, Post } from '../Types'
 import PostItem from './PostItem'
@@ -25,7 +26,7 @@ export default function Posts() {
 
     return (
         <ul className='posts-list'>
-            {posts.map(post => <PostItem key={post.id} post={post} />)}
+            {shufflePosts(posts).map(post => <PostItem key={post.id} post={post} />)}
         </ul>
     )
 }

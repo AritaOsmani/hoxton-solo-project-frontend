@@ -1,13 +1,18 @@
 import React from 'react'
 import '../styles/SearchedAccount.css'
+import { User } from '../Types'
 
-export default function SearchedAccount() {
+type Props = {
+    recentSearch: User
+}
+
+export default function SearchedAccount({ recentSearch }: Props) {
     return (
         <div className='searched-account-container'>
-            <img src="https://avatars.dicebear.com/api/avataaars/Arita.svg" alt="" />
+            <img src={recentSearch.image} alt="" />
             <div className='searched-account-info'>
-                <span className='searched-account-info-username'>Arita</span>
-                <span className='searched-account-info-bio'>Lorem ipsum dolor sit amet.</span>
+                <span className='searched-account-info-username'>{recentSearch.username}</span>
+                <span className='searched-account-info-bio'>{recentSearch.bio}</span>
             </div>
         </div>
     )

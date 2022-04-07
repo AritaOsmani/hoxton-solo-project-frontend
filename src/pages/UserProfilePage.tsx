@@ -57,7 +57,7 @@ export default function UserProfilePage({ user, setUser, setModal }: Props) {
                     }
                 }
             })
-    }, [params.username])
+    }, [params.username, userFollowers])
 
     // useEffect(() => {
     //     // if (userFollowers.length === 0) return

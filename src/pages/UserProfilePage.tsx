@@ -79,7 +79,7 @@ export default function UserProfilePage({ user, setUser, setModal }: Props) {
                     setUserPosts(data)
                 }
             })
-    }, [params.username])
+    }, [params.username, userFound])
 
     return (
 

@@ -82,7 +82,7 @@ export default function CreatePost({ user, setModal }: Props) {
                     setFileName(e.target.files[0].name)
                 }}
                     type="file" name="file" id="" />
-                {file ? <img className='selected-img' src={`http://localhost:4000/${fileName}`} /> : null}
+                {/* {file ? <img className='selected-img' src={`http://localhost:4000/${fileName}`} /> : null} */}
                 <textarea onChange={(e: any) => {
                     console.log('caption:', caption)
                     setCaption(e.target.value)

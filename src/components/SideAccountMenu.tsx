@@ -44,7 +44,9 @@ export default function SideAccountMenu({ user }: Props) {
                 </div>
                 <div className='suggestion-link'>
                     <h3>Suggestions For You</h3>
-                    <span>See All</span>
+                    <span onClick={() => {
+                        navigate('/suggested')
+                    }}>See All</span>
                 </div>
                 <ul className='suggested-users'>
                     {/* {suggested.map(s => <SuggestedUser key={s.id} suggestedUser={s} />)} */}

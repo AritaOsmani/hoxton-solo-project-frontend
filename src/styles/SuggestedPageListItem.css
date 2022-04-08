@@ -1,0 +1,43 @@
+.suggested-page-list-item-container {
+    display: grid;
+    grid-template-columns: 50px auto 50px;
+    gap: 10px;
+    padding: 5px 10px;
+}
+
+.suggested-page-list-item-container img {
+    height: 50px;
+    border: solid 1px rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+}
+
+.suggested-page-list-item-user-info {
+    display: grid;
+    justify-items: start;
+    align-items: center;
+
+}
+
+.suggested-page-list-item-user-info-username {
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.suggested-page-list-item-user-info-bio {
+    font-size: 12px;
+    text-align: start;
+}
+
+.suggested-page-follow-btn {
+    height: 30px;
+    align-self: center;
+    color: white;
+    background-color: #0095f6;
+    border: none;
+    font-weight: 600;
+    padding: 5px;
+    font-size: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}

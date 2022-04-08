@@ -1,0 +1,25 @@
+.suggested-page-container {
+    background-color: #fafafa;
+    height: 100vh;
+}
+
+.suggested-page-main-container {
+    display: grid;
+    place-content: center;
+    gap: 10px;
+    padding: 20px;
+}
+
+.suggested-page-main-container h6 {
+    font-size: 16px;
+    justify-self: start;
+    font-weight: 500;
+}
+
+.suggested-page-suggestions-list {
+    display: grid;
+    gap: 10px;
+    background-color: white;
+    padding: 30px 10px;
+    width: 600px;
+}

@@ -10,6 +10,7 @@ import UserProfilePage from './pages/UserProfilePage'
 import ExpandedPostPage from './pages/ExpandedPostPage'
 import CreatePost from './components/CreatePost'
 import StoryPage from './pages/StoryPage'
+import SuggestedPage from './pages/SuggestedPage'
 
 function App() {
   const [user, setUser] = useState<User | null>(null)
@@ -46,6 +47,7 @@ function App() {
         <Route path='/posts/:id' element={<ExpandedPostPage />} />
         {/* <Route path='/create' element={<CreatePost user={user} />} /> */}
         <Route path='/stories/:id' element={<StoryPage />} />
+        <Route path='/suggested' element={<SuggestedPage user={user} setUser={setUser} setModal={setModal} />} />
       </Routes>
 
     </div>
